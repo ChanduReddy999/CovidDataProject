@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const { endpoint }  = require('../config')
-const router = require('../src/routes')
+const router = require('../src/routes/index')
 
 module.exports = () => {
     const app = express();

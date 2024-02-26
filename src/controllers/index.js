@@ -1,4 +1,4 @@
-const covidService = require("../services")
+const covidService = require("../services/index")
 const { callServices } = require('./callServices')
 
 const covidController = async(req,res)=>{
