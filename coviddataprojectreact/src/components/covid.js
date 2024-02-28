@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Covid = () => {
 
@@ -11,14 +12,23 @@ const Covid = () => {
     const getCovidData = async () => {
         try {
             // const apiUrl = 'https://api.covid19india.org/data.json';
-
             // const data = await fetch(apiUrl, {
             //     mode: 'no-cors'
             // })
-            const data = await fetch('https://api.covid19india.org/data.json');
-            const finalData = await data.json();
-            console.log("finalData", finalData.statewise[0]);
-            setData(finalData.statewise[0])
+
+            // const data = await fetch('https://api.covid19india.org/data.json');
+            // const finalData = await data.json();
+            // console.log("finalData", finalData.statewise[0]);
+            // setData(finalData.statewise[0])
+
+            await axios.get('http://127.0.0.1:1000/dev/v1/covidData').then(response =>{
+                const covidData = response.data
+                console.log("covidData",covidData);
+                // console.log("covidData",covidData.data.confirmed);
+                setData(covidData.data)
+            }).catch(error=>{
+                console.error('Error fetching data:',error);
+            });
         } catch (error) {
             console.log(error);
         }
@@ -39,7 +49,7 @@ const Covid = () => {
                         </li>
                         <li>
                             <p>Total <span>Recovered</span></p>
-                            <p>{data.recoverd}</p>
+                            <p>{data.recovered}</p>
                         </li>
                         <li>
                             <p>Total <span>Confirmed</span></p>
