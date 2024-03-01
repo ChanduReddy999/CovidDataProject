@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import './covid.css'
 
 const Covid = () => {
 
@@ -21,13 +22,13 @@ const Covid = () => {
             // console.log("finalData", finalData.statewise[0]);
             // setData(finalData.statewise[0])
 
-            await axios.get('http://127.0.0.1:1000/dev/v1/covidData').then(response =>{
+            await axios.get('http://127.0.0.1:1000/dev/v1/covidData').then(response => {
                 const covidData = response.data
-                console.log("covidData",covidData);
+                console.log("covidData", covidData);
                 // console.log("covidData",covidData.data.confirmed);
                 setData(covidData.data)
-            }).catch(error=>{
-                console.error('Error fetching data:',error);
+            }).catch(error => {
+                console.error('Error fetching data:', error);
             });
         } catch (error) {
             console.log(error);
@@ -36,37 +37,54 @@ const Covid = () => {
 
     return (
         <>
-            <div>
-                <div>
-                    <h1>LIVE</h1>
-                    <h2>Covid-19 Live Tracker</h2>
+            <div className='main'>
+                <div className='first'>
+                    <h1 className='headingOne'><span className='dot'>🔴</span>LIVE</h1>
+                    <h2 className='headingTwo'>Covid-19 Live Tracker</h2>
+                    <marquee className="desclaimer">!Desclaimer: This content / information is last updated on {data.lastupdatedtime}</marquee>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Our <span>Country</span></p>
-                            <p>INDIA</p>
-                        </li>
-                        <li>
-                            <p>Total <span>Recovered</span></p>
-                            <p>{data.recovered}</p>
-                        </li>
-                        <li>
-                            <p>Total <span>Confirmed</span></p>
-                            <p>{data.confirmed}</p>
-                        </li>
-                        <li>
-                            <p>Total <span>Deaths</span></p>
-                            <p>{data.deaths}</p>
-                        </li>
-                        <li>
-                            <p>Total <span>Active</span></p>
-                            <p>{data.active}</p>
-                        </li>
-                        <li>
-                            <p>Last <span>Updated</span></p>
-                            <p>{data.lastupdatedtime}</p>
-                        </li>
+                <div className='second'>
+                    <ul className='ulTag'>
+                        <div className='ulDivOne'>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Our <span className='spanOne'>Country</span></p>
+                                    <p className='paraTwo'>INDIA</p>
+                                </li>
+                            </div>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Total <span className='spanOne'>Recovered</span></p>
+                                    <p className='paraTwo'>{data.recovered}</p>
+                                </li>
+                            </div>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Total <span className='spanOne'>Confirmed</span></p>
+                                    <p className='paraTwo'>{data.confirmed}</p>
+                                </li>
+                            </div>
+                        </div>
+                        <div className='ulDivTwo'>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Total <span className='spanOne'>Deaths</span></p>
+                                    <p className='paraTwo'>{data.deaths}</p>
+                                </li>
+                            </div>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Total <span className='spanOne'>Active</span></p>
+                                    <p className='paraTwo'>{data.active}</p>
+                                </li>
+                            </div>
+                            <div>
+                                <li>
+                                    <p className='paraOne'>Last <span className='spanOne'>Updated</span></p>
+                                    <p className='paraTwo'>{data.lastupdatedtime}</p>
+                                </li>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
