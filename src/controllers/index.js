@@ -1,16 +1,20 @@
-const {covidService,StateWiseCovidDataService} = require("../services/index")
+const {covidService,stateWiseCovidDataService,dayWiseCovidTestsService} = require("../services/index")
 const { callServices } = require('./callServices')
 
 const covidController = async(req,res)=>{
     callServices(covidService,req,res)
 }
 
-const StateWiseCovidDataController = async(req,res)=>{
-    callServices(StateWiseCovidDataService,req,res)
+const stateWiseCovidDataController = async(req,res)=>{
+    callServices(stateWiseCovidDataService,req,res)
+}
+
+const dayWiseCovidTestsController = async(req,res)=>{
+    callServices(dayWiseCovidTestsService,req,res)
 }
 
 
 
 module.exports = {
-    covidController,StateWiseCovidDataController
+    covidController,stateWiseCovidDataController,dayWiseCovidTestsController
 }
