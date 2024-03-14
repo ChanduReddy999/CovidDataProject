@@ -22,21 +22,26 @@ const stateWiseCovidDataService = async () => {
 }
 
 
-const dayWiseCovidTestsService = async () => {
+const dayWiseCovidTestsService = async (req,res) => {
     try {
-        const covidData = await axios.get('https://api.covid19india.org/data.json')
-        // console.log("covidData",covidData.data.tested);
-        // covidData.data.tested gives covid data tests day wise, if necessary make the changes as regarding
-        const finalData = covidData.data.tested
+        const desiredDate = req.body.desiredDate
 
-        const finalResult = finalData.map((key) => {
+        const covidData = await axios.get('https://api.covid19india.org/data.json');
+        const finalData = covidData.data.tested;
+
+        const filteredData = finalData.filter((key) => {
+            // Check if testedasof matches the desired date
+            return key.testedasof === desiredDate;
+        });
+
+        const finalResult = filteredData.map((key) => {
             const Result = {
                 "over45years1stdose": key.over45years1stdose || 0,
                 "over45years2nddose": key.over45years2nddose || 0,
                 "over60years1stdose": key.over60years1stdose || 0,
                 "over60years2nddose": key.over60years2nddose || 0,
                 "positivecasesfromsamplesreported": key.positivecasesfromsamplesreported || '',
-                "registration18-45years": key.registrationabove45years || 0,
+                "registration18-45years": key["registration18-45years"] || 0,
                 "registrationabove45years": key.registrationabove45years || 0,
                 "samplereportedtoday": key.samplereportedtoday || 0,
                 "testedasof": key.testedasof || '',
@@ -50,16 +55,15 @@ const dayWiseCovidTestsService = async () => {
                 "updatetimestamp": key.updatetimestamp || '',
                 "years1stdose": key.years1stdose || 0,
                 "years2nddose": key.years2nddose || 0,
-            }
-            return Result
-        })
+            };
+            return Result;
+        });
 
-
-        return { status: 200, message: "success", data: finalResult }
+        return { status: 200, message: "success", data: finalResult };
     } catch (error) {
-        return { status: 300, message: "error", data: [] }
+        return { status: 300, message: "error", data: [] };
     }
-}
+};
 
 
 module.exports = { covidService, stateWiseCovidDataService, dayWiseCovidTestsService }
