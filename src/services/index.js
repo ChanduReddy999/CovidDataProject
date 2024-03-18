@@ -24,8 +24,8 @@ const stateWiseCovidDataService = async () => {
 
 const dayWiseCovidTestsService = async (req,res) => {
     try {
-        const desiredDate = req.body.desiredDate
-
+        var desiredDate = req.body.desiredDate
+        // desiredDate = '23/04/2021'                  // any date between covid period
         const covidData = await axios.get('https://api.covid19india.org/data.json');
         const finalData = covidData.data.tested;
 

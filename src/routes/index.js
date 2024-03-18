@@ -3,5 +3,5 @@ const { covidController,stateWiseCovidDataController,dayWiseCovidTestsController
 router  = express.Router()
 router.get('/covidData',covidController)
 router.get('/stateWiseCovidData',stateWiseCovidDataController)
-router.get('/dayWiseCovidTests',dayWiseCovidTestsController)
+router.post('/dayWiseCovidTests',dayWiseCovidTestsController)
 module.exports =router
