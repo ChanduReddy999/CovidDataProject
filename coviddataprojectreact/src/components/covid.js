@@ -24,7 +24,7 @@ const Covid = () => {
 
             await axios.get('http://127.0.0.1:1000/dev/v1/covidData').then(response => {
                 const covidData = response.data
-                console.log("covidData", covidData);
+                // console.log("covidData", covidData);
                 // console.log("covidData",covidData.data.confirmed);
                 setData(covidData.data)
             }).catch(error => {
@@ -39,7 +39,10 @@ const Covid = () => {
         <>
             <div className='main'>
                 <div className='first'>
-                    <h1 className='headingOne'><span className='dot'>🔴</span>LIVE</h1>
+                <div className='first_Internal'>
+                <div className='liveCircle'></div>
+                <div><h1 className='headingOne'>LIVE</h1></div>    
+                </div>
                     <h2 className='headingTwo'>Covid-19 Live Tracker</h2>
                     <marquee className="desclaimer">!Desclaimer: This content / information is last updated on {data.lastupdatedtime}</marquee>
                 </div>
