@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import NavBar from './NavBar'
 import './CovidDoses.css'
 
 
@@ -13,7 +14,7 @@ const CovidDoses = () => {
                 const parts = date.split('-');
                 const desiredDate = parts[2] + '/' + parts[1] + '/' + parts[0];
                 console.log("desiredDate", desiredDate);
-                const response = await axios.post('http://127.0.0.1:1000/dev/v1/dayWiseCovidTests', { desiredDate });
+                const response = await axios.post('https://coviddataproject.onrender.com/prod/v1/dayWiseCovidTests', { desiredDate });
                 const result = response.data;
                 console.log(result.data[0]);
                 if (result && result.data[0]) {
@@ -43,7 +44,8 @@ const CovidDoses = () => {
 
     return (
         <>
-            <div className='dosesMain'>
+            <NavBar />
+            <div className='dosesMain' id='DayWiseData'>
                 <div className='dosesOne'>
                     <h1 className='dosesHeading'>Covid Doses</h1>
                     <form onSubmit={submitDate}>

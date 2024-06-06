@@ -4,7 +4,8 @@
     font-family: 'Times New Roman', Times, serif;
 }
 .stateWiseMain{
-    margin: 50px 100px;
+    margin: 0 100px;
+    padding-top: 50px;
 }
 
 .headingStateWise{

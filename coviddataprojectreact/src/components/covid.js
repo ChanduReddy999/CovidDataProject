@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import NavBar from './NavBar'
 import './covid.css'
 
 const Covid = () => {
@@ -22,7 +23,7 @@ const Covid = () => {
             // console.log("finalData", finalData.statewise[0]);
             // setData(finalData.statewise[0])
 
-            await axios.get('http://127.0.0.1:1000/dev/v1/covidData').then(response => {
+            await axios.get('https://coviddataproject.onrender.com/prod/v1/covidData').then(response => {
                 const covidData = response.data
                 // console.log("covidData", covidData);
                 // console.log("covidData",covidData.data.confirmed);
@@ -37,7 +38,8 @@ const Covid = () => {
 
     return (
         <>
-            <div className='main'>
+            <NavBar />
+            <div className='main' id='Home'>
                 <div className='first'>
                 <div className='first_Internal'>
                 <div className='liveCircle'></div>

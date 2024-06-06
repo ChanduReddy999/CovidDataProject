@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import NavBar from './NavBar';
 import './statewise.css'
 
 const StateWise = () => {
@@ -11,7 +12,7 @@ const StateWise = () => {
 
     const getCovidData = async () => {
         try {
-            await axios.get('http://127.0.0.1:1000/dev/v1/StateWiseCovidData').then(response => {
+            await axios.get('https://coviddataproject.onrender.com/prod/v1/stateWiseCovidData').then(response => {
                 const covidData = response.data
                 // console.log("covidDatas", covidData.data);
                 setData(covidData.data)
@@ -23,7 +24,8 @@ const StateWise = () => {
 
     return (
         <>
-            <div className='stateWiseMain'>
+            <NavBar />
+            <div className='stateWiseMain' id='StateWiseData'>
                 <div>
                     <h1 className='headingStateWise'>India Covid-19 StateWise Data</h1>
                 </div>
