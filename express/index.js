@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const { endpoint }  = require('../config')
 const router = require('../src/routes/index')
+const covidVisualROuter = require('../src/routes/covidVisualizer')
 
 module.exports = () => {
     const app = express();
@@ -16,5 +17,6 @@ module.exports = () => {
         next();
     });
     app.use(endpoint,router)
+    app.use(endpoint,covidVisualROuter)
     return app;
 }
