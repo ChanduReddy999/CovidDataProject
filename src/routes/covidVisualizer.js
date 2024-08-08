@@ -6,6 +6,7 @@ router  = express.Router()
 router.get('/covidvisualdata',covidVisualController.covidVisualDataController)
 router.post('/covidvisualcountrydata',covidVisualController.covidVisualCountryDataController)
 router.get('/covidvaccinedata',covidVisualController.covidVaccineDataController)
+router.post('/covidvaccinecountrydata',covidVisualController.covidVaccineCountryDataController)
 
 
 module.exports =router

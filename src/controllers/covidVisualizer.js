@@ -13,9 +13,13 @@ const covidVaccineDataController = async(req,res)=>{
     callServices(covidVisualService.covidVaccineDataService,req,res)
 }
 
+const covidVaccineCountryDataController = async(req,res)=>{
+    callServices(covidVisualService.covidVaccineCountryDataService,req,res)
+}
+
 
 
 
 module.exports = {
-    covidVisualDataController,covidVisualCountryDataController, covidVaccineDataController
+    covidVisualDataController,covidVisualCountryDataController, covidVaccineDataController, covidVaccineCountryDataController
 }
